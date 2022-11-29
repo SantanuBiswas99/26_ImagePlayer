@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      body{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          /* background: #E3F2FD; */
+          background: #1e1f22;
+      }
+
+      .container1{
+          position: relative;
+          width: 100%;
+          height: 100vh;
+          overflow: hidden;
+          z-index: -1;
+
+      }
+
+      .bubbles{
+          position: relative;
+          display: flex;
+      }
+
+      .bubbles span{
+          position: relative;
+          width: 12px;
+          height: 12px;
+          background: #7eafba;
+          margin: 5px 15px;
+          border-radius: 10%;
+          box-shadow: 0 0 0 5px #7eafba44,
+          0 0 20px #7eafba,
+          0 0 50px #7eafba;
+          animation: animate 15s linear infinite;
+          animation-duration: calc(125s / var(--i));
+      }
+
+      .bubbles span:nth-child(even)
+      {
+          background: #ffffff;
+          box-shadow: 0 0 0 5px #ffffff44,
+          0 0 20px #ffffff,
+          0 0 50px #ffffff;
+      }
+
+      @keyframes animate{
+          0%{
+              transform: translateY(100vh) scale(0);
+          }
+          100%{
+              transform: translateY(-10vh) scale(1);
+          }
+      }
+
+      .container{
+          width: 1000px;
+          background: #1e1f22;
+          border-radius: 10px;
+          padding: 30px 35px 35px;
+          box-shadow: 0 10px 20px rgba(242, 242, 242, 0.1);
+          position: fixed;
+          transform-style: preserve-3d;
+      }
+
+
+      .rgb::after{
+        content: "";
+        background: linear-gradient(45deg,
+        #ff0000 0%,
+        #ff9a00 10%,
+        #d0de21 20%,
+        #4fdc4a 30%,
+        #3fdad8 40%,
+        #2fc9e2 50%,
+        #1c7fee 60%,
+        #5f1ff2 70%,
+        #ba0cf8 80%,
+        #fb07d9 90%,
+        #ff0000 100% )
+        repeat 0% 0% / 300% 100%;
+        position: absolute;
+        inset: -3px;
+        border-radius: 16px;
+        filter: blur(8px);
+        transform: translateZ(-1px);
+        animation: rgb 6s linear infinite;
+    }
+    
+    @keyframes rgb{
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+
+      .container.disable :where(.editor-panel,.reset-filter,.save-img){
+          opacity: 0.6;
+          pointer-events: none;
+      }
+
+      .container h2{
+          font-size: 22px;
+          font-weight: 500;
+          color: white;
+      }
+
+      .container .wrapper{
+          display: flex;
+          margin: 20px 0;
+          min-height: 335px;
+      }
+
+      .wrapper .editor-panel{
+          width: 340px;
+          padding: 40px 20px;
+          border-radius: 5px;
+          border: 1px solid #ffffff;
+      }
+
+      .editor-panel .title{
+          display: block;
+          font-size: 16px;
+          margin-bottom: 12px;
+      }
+
+      .editor-panel .options, .controls{
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+      }
+
+      .editor-panel form{
+          height: 40px;
+          font-size: 14px;
+          color: #6c757d;
+          margin-bottom: 8px;
+          border-radius: 3px;
+          background: #1e1f22;
+          border: 1px solid #aaaaaa;
+      }
+
+      .editor-panel form:hover{
+          background: #f5f5f5;
+      }
+
+      .editor-panel .filter form{
+          width: calc(100% / 2 - 4px);
+      }
+
+      .filter form.active{
+          color: #1e1f22;
+          background: #ffffff;
+          border-color: #ffffff;
+      }
+
+    .wrapper .preview-img{
+        flex-grow: 1;
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        margin-left: 30px;
+    }
+
+    .preview-img img{
+        max-width: 550px;
+        max-height: 500px;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .controls button, input{
+        font-size: 14px;
+        cursor: pointer;
+        color: #ffffff;
+        background: #ffffff;
+        padding: 11px 20px;
+        border-radius: 3px;
+        text-transform: uppercase;
+    }
+
+    .controls .reset-filter{
+        color: #1e1f22;
+        border: 1px solid #6c757d;
+    }
+
+    .controls .choose-img{
+        background: #1e1f22;
+        border: 1px solid #ffffff;
+    }
+
+    .controls .save-img{
+        margin-left: 5px;
+        background: #ffffff;
+        border: 1px solid #ffffff;
+        color: #1e1f22;
+    }
+      
+
+      @media screen and (max-width: 760px){
+          .container{
+              padding: 25px;
+          }
+
+          .container .wrapper{
+              flex-wrap: wrap-reverse;
+          }
+
+          .wrapper .editor-panel{
+              width: 100%;
+          }
+
+          .wrapper .preview-img{
+              width: 100%;
+              margin: 0 0 15px;
+          }
+          
+      }
+
+      @media screen and (max-width: 500px)
+      {
+          .controls input{
+              width: 100%;
+              margin-bottom: 10px;
+          }
+          .controls .row{
+              width: 100%;
+          }
+          .controls .row .save-img{
+              margin-left: 0px;
+          }
+      }
+    </style>
+  </head>
+    <body>
+
+      <div class="container rgb">
+        <h2>IMAGE EDITOR</h2>
+        <div class="wrapper">
+            <div class="editor-panel">
+                <div class="filter">
+                    <label class="title" style="color: white;"> Filters </label>
+                    <div class="options">                        
+                          <form action="http://localhost:5005/bilateral">
+                          <input type="submit" value="Bilateral Filter" style="background: transparent; border:0; color:#464646;"/>
+                          </form>
+                          <form action="http://localhost:5005/cartoon">
+                          <input type="submit" value="Cartoon Filter" style="background: transparent; border:0; color:#464646;"/>
+                          </form>
+                          <form action="http://localhost:5005/inverted">
+                          <input type="submit" value="Inverted Filter" style="background: transparent; border:0; color:#464646;   "/>
+                          </form>
+                          <form action="http://localhost:5005/gray_sketch">
+                          <input type="submit" value="Gray Sketch" style="background: transparent; border:0; color:#464646;   "/>
+                          </form>
+                          <form action="http://localhost:5005/color_sketch">
+                          <input type="submit" value="Color Sketch" style="background: transparent; border:0; color:#464646;   "/>
+                          </form>
+                          <form action="http://localhost:5005/detail_enhance">
+                          <input type="submit" value="Detailed Photo" style="background: transparent; border:0; color:#464646;   "/>
+                          </form>
+                          <form action="http://localhost:5005/summer">
+                          <input type="submit" value="Summer Photo" style="background: transparent; border:0; color:#464646;   "/>
+                          </form>
+                          <form action="http://localhost:5005/winter">
+                          <input type="submit" value="Winter Photo" style="background: transparent; border:0; color:#464646;   " />
+                          </form>
+                          <form action="http://localhost:5005/draw">
+                          <input type="submit" value="Draw on Video" style="background: transparent; border:0; color:#464646;   "/>
+                          </form>
+                    </div>
+                    </div>
+                </div>
+            <div class="preview-img">
+                <img src="{{url_for('static', filename='uploaded_image.jpg')}}" alt="preview-img">
+            </div>
+        </div>
+         <div class="controls">
+            <form action="http://localhost:5005/cards" >
+                <button>
+                <input type="submit" class="reset-filter" value="Go HOME" style="background: transparent; border:0; color:#1e1f22;   "/>
+                </button>
+            </form>
+           
+        </div> 
+    </div>
+
+    <div class="container1">
+      <div class="bubbles">
+          <span style="--i:11"></span>
+          <span style="--i:12"></span>
+          <span style="--i:24"></span>
+          <span style="--i:10"></span>
+          <span style="--i:14"></span>
+          <span style="--i:23"></span>
+          <span style="--i:18"></span>
+          <span style="--i:16"></span>
+          <span style="--i:19"></span>
+          <span style="--i:20"></span>
+          <span style="--i:22"></span>
+          <span style="--i:25"></span>
+          <span style="--i:18"></span>
+          <span style="--i:15"></span>
+          <span style="--i:13"></span>
+          <span style="--i:26"></span>
+          <span style="--i:17"></span>
+          <span style="--i:13"></span>
+          <span style="--i:28"></span>
+          <span style="--i:11"></span>
+          <span style="--i:12"></span>
+          <span style="--i:24"></span>
+          <span style="--i:10"></span>
+          <span style="--i:14"></span>
+          <span style="--i:23"></span>
+          <span style="--i:18"></span>
+          <span style="--i:16"></span>
+          <span style="--i:19"></span>
+          <span style="--i:20"></span>
+          <span style="--i:22"></span>
+          <span style="--i:25"></span>
+          <span style="--i:18"></span>
+          <span style="--i:15"></span>
+          <span style="--i:13"></span>
+          <span style="--i:26"></span>
+          <span style="--i:17"></span>
+          <span style="--i:13"></span>
+          <span style="--i:28"></span>
+
+      </div>
+  </div>
+      
+      
+    
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script>
+        const fileInput = document.querySelector(".file-input"),
+        filterOptions = document.querySelectorAll(".filter form"),
+        filterName = document.querySelector(".filter-info .name"),
+        filterValue = document.querySelector(".filter-info .value"),
+        filterSlider = document.querySelector(".slider input"),
+        previewImg = document.querySelector(".preview-img img"),
+        rotateOptions = document.querySelectorAll(".rotate button"),
+        resetFilterBtn = document.querySelector(".reset-filter"),
+        chooseImgBtn = document.querySelector(".choose-img"),
+        saveImgBtn = document.querySelector(".save-img");
+
+
+        let brightness = 100
+        let saturation = 100
+        let inversion = 0
+        let grayscale = 0
+
+        let rotate=0
+        let flipHorizontal=1
+        let flipVertical=1
+
+        const applyFilter =()=>{
+            previewImg.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
+            previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
+        }
+
+        const loadImage = ()=>{
+            let file = fileInput.files[0];
+            if(!file) return;
+            console.log(file);
+            previewImg.src = URL.createObjectURL(file);
+            previewImg.addEventListener("load",()=>{
+                resetFilterBtn.click();
+                document.querySelector(".container").classList.remove("disable");
+            });
+        }
+
+        filterOptions.forEach(option =>{
+            option.addEventListener("click",()=>{
+            document.querySelector(".filter .active").classList.remove("active");
+            option.classList.add("active"); 
+            filterName.innerText = option.innerText;
+
+            if(option.id === "brightness")
+            {
+                filterSlider.max = "200";
+                filterSlider.value = brightness;
+                filterValue.innerText = `${brightness}%`;
+            }
+            else if(option.id === "saturation")
+            {
+                filterSlider.max = "200";
+                filterSlider.value = saturation;
+                filterValue.innerText = `${saturation}%`;
+            }
+            else if(option.id === "inversion")
+            {
+                filterSlider.max = "100";
+                filterSlider.value = inversion;
+                filterValue.innerText = `${inversion}%`;
+            }
+            else if(option.id === "grayscale")
+            {
+                filterSlider.max = "100";
+                filterSlider.value = grayscale;
+                filterValue.innerText = `${grayscale}%`;
+            }
+
+            });
+        });
+
+        const updateFilter=()=>{
+            console.log(filterSlider.value);
+            filterValue.innerText=`${filterSlider.value}%`;
+            const selectedFilter = document.querySelector(".filter .active");
+
+            if(selectedFilter.id === "brightness"){
+                brightness = filterSlider.value;        
+            }
+            else if(selectedFilter.id === "saturation"){
+                saturation = filterSlider.value;        
+            }
+            else if(selectedFilter.id === "inversion"){
+                inversion = filterSlider.value;        
+            }
+            else if(selectedFilter.id === "grayscale"){
+                grayscale = filterSlider.value;        
+            }
+            applyFilter();
+
+        }
+
+
+        rotateOptions.forEach(option=>{
+            option.addEventListener("click",()=>{
+                console.log(option);
+                if(option.id==="left")
+                {
+                    rotate-=90;
+                }
+                else if(option.id==="right")
+                {
+                    rotate+=90;
+                }
+                else if(option.id==="horizontal")
+                {
+                    flipHorizontal = flipHorizontal === 1 ? -1 : 1;
+                }
+                else if(option.id==="vertical")
+                {
+                    flipVertical = flipVertical === 1 ? -1 : 1;
+                }
+                applyFilter();
+            });
+        });
+
+        const resetFilter=()=>{
+            brightness = 100;
+            saturation = 100;
+            inversion = 0;
+            grayscale = 0;
+
+            rotate=0;
+            flipHorizontal=1;
+            flipVertical=1;
+
+            filterOptions[0].click();
+            applyFilter();
+        }
+
+
+        const saveImage=()=>{
+            console.log("Save image at button Clicked");
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = previewImg.naturalWidth;
+            canvas.height = previewImg.naturalHeight;
+
+            ctx.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
+            ctx.translate(canvas.width / 2,canvas.height / 2);
+            if(rotate!==0)
+            {
+                ctx.rotate(rotate * Math.PI / 180);
+            }
+            ctx.scale(flipHorizontal,flipVertical);
+            ctx.drawImage(previewImg,-canvas.width / 2, -canvas.height / 2,canvas.width,canvas.height);
+            //document.body.appendChild(canvas);
+
+            const link = document.createElement("a");
+            link.download = "edited_image.jpg";
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+
+        fileInput.addEventListener("change",loadImage);
+        filterSlider.addEventListener("input",updateFilter);
+        resetFilterBtn.addEventListener("click",resetFilter);
+        saveImgBtn.addEventListener("click",saveImage);
+        chooseImgBtn.addEventListener("click",()=>fileInput.click());
+
+
+      </script>
+
+
+  </body>
+</html>

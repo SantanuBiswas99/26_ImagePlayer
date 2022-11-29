@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
+        <title> Main Page </title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+            *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            }
+
+            body{
+                overflow: hidden;
+            }
+
+            .container{
+                width: 100%;
+                height: 100vh;
+                background-image: url("{{url_for('static', filename='image1.jpg')}}");
+                /* background-color: #1e1f22; */
+                background-size: cover;
+                background-position: center;
+                padding: 20px 10%;
+
+            }
+
+            .design{
+                width: 100%;
+                height: 300px;
+                margin-top: 130px;
+                margin-left: 120px;
+                background-color: #1e1f22;
+                opacity: 0.2;
+                /* background-image: url(image.jpg); */
+                rotate: -40deg;
+                transform-style: preserve-3d;
+                align-items: center;
+                position: absolute;
+            }
+
+            .rgb::after{
+                content: "";
+                background: linear-gradient(45deg,
+                #ff0000 0%,
+                #ff9a00 10%,
+                #d0de21 20%,
+                #4fdc4a 30%,
+                #3fdad8 40%,
+                #2fc9e2 50%,
+                #1c7fee 60%,
+                #5f1ff2 70%,
+                #ba0cf8 80%,
+                #fb07d9 90%,
+                #ff0000 100% )
+                repeat 0% 0% / 300% 100%;
+                position: absolute;
+                inset: -3px;
+                border-radius: 3px;
+                filter: blur(5px);
+                transform: translateZ(-1px);
+                animation: rgb 6s linear infinite;
+            }
+
+            @keyframes rgb{
+                0% {background-position: 0% 50%;}
+                50% {background-position: 100% 50%;}
+                100% {background-position: 0% 50%;}
+            }
+
+            nav{
+                width:100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            nav .logo{
+                width: 200px;
+                cursor: pointer;
+            }
+
+            nav .btn{
+                text-decoration: none;
+                color: #ffffff; 
+                background: #1e1f22;
+                padding: 15px 50px;
+                border-radius: 3px;
+                margin-top: 15px;
+                transform-style: preserve-3d;
+                cursor:point
+            }
+
+            .content{
+                margin-top: 11%;
+            }
+
+            .content h2{
+                color: rgb(255, 7, 110);
+                text-shadow: 3px 3px #1e1f22;
+                font-size: 34px;
+            }
+
+            .content h1{
+                font-size: 70px;
+                color: white;
+                text-shadow: 3px 3px #1e1f22;
+                margin-top: -25px;
+            }
+
+            .content p{
+                max-width: 380px;
+                font-weight: 500;
+                font-size: 14px;
+                color: #c3c3c3;
+                text-shadow: 2px 2px #1e1f22;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <nav>
+                <img src="{{url_for('static', filename='logo.png')}}" class="logo">
+            </nav>
+            <div class="design rgb"></div>
+            
+            <div class="content">
+               <h2>Do it as you like</h2>
+               <h1>IMAGE PLAYER</h1>
+               <p>Edit, manipulate, and enhance photos for personal or business use.</p>
+               <nav>
+               <!-- <a href="cards.html" class="btn rgb">Get Started</a> -->
+               <form action="http://localhost:5005/cards">
+                
+                <div class="btn rgb"><input type="submit" value="Get Started" style="background:transparent; border:none; color:white; font-size: 15px;"/></div>
+                </form>
+               </nav>
+            </div>
+        </div>
+        
+    </body>
+</html>

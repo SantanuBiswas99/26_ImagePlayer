@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>SSD Project</title>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1e1f22;
+            overflow: hidden;
+        }
+
+        a{
+            text-decoration: none !important;
+        }
+        .heading{
+        /* border: 5px solid; */
+        font-size: 22px;
+        font-weight: 500;
+        width: 100%;
+        color: white;
+        position: absolute;
+        /* align-content: center; */
+        display:flex;
+        justify-content: center;
+        }
+
+        .container1{
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+
+        }
+
+        .bubbles{
+            position: relative;
+            display: flex;
+        }
+
+        .bubbles span{
+            position: relative;
+            width: 12px;
+            height: 12px;
+            background: #7eafba;
+            margin: 5px 15px;
+            border-radius: 10%;
+            box-shadow: 0 0 0 5px #7eafba44,
+            0 0 20px #7eafba,
+            0 0 50px #7eafba;
+            animation: animate 15s linear infinite;
+            animation-duration: calc(125s / var(--i));
+        }
+
+        .bubbles span:nth-child(even)
+        {
+            background: #ffffff;
+            box-shadow: 0 0 0 5px #ffffff44,
+            0 0 20px #ffffff,
+            0 0 50px #ffffff;
+        }
+
+        @keyframes animate{
+            0%{
+                transform: translateY(100vh) scale(0);
+            }
+            100%{
+                transform: translateY(-10vh) scale(1);
+            }
+        }
+
+
+        .container{
+            /* width: 1000px; */
+            /* background: #1e1f22; */
+            /* border-radius: 10px; */
+            /* padding: 30px 35px 35px; */
+            /* box-shadow: 0 10px 20px rgba(242, 242, 242, 0.1); */
+            position: fixed;
+            display: flex;
+        }
+
+        .card{
+            display: grid;
+            grid-template-columns: 300px;
+            grid-template-rows: 210px 250px 20px;
+            grid-template-areas: "image" "text" "stats";
+
+            /* font-family: ro; */
+            border-radius: 18px;
+            background: #1d1d1d;
+            color: white;
+            box-shadow: 5px 5px  15px rgba(0, 0, 0, 0.9);
+            text-align: justify;
+
+            transition: 0.5s ease;
+            cursor: pointer;
+
+            margin:30px;
+            margin-top: 70px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            
+        }
+
+        .rgb::after{
+            content: "";
+            background: linear-gradient(45deg,
+            #ff0000 0%,
+            #ff9a00 10%,
+            #d0de21 20%,
+            #4fdc4a 30%,
+            #3fdad8 40%,
+            #2fc9e2 50%,
+            #1c7fee 60%,
+            #5f1ff2 70%,
+            #ba0cf8 80%,
+            #fb07d9 90%,
+            #ff0000 100% )
+            repeat 0% 0% / 300% 100%;
+            position: absolute;
+            inset: -3px;
+            border-radius: 16px;
+            filter: blur(8px);
+            transform: translateZ(-1px);
+            animation: rgb 6s linear infinite;
+        }
+
+        @keyframes rgb{
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        .card-image1{
+            grid-area: image;
+            background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url("{{url_for('static', filename='img2.jpg')}}");
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-size: cover;
+        }
+
+        .card-image2{
+            grid-area: image;
+            background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url("{{url_for('static', filename='img1.jpeg')}}");
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-size: cover;
+        }
+
+        .card-image3{
+            grid-area: image;
+            background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url("{{url_for('static', filename='img3.jpg')}}");
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-size: cover;
+        }
+
+        .card-text{
+            grid-area: text;
+            margin: 25px;
+            transform: translateZ(30px);
+        }
+
+        .card-text .date{
+            /* color: rgb(255, 7, 110); */
+            font-size: 13px;
+        }
+
+        .card-text p{
+            color: grey;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .card-text h2{
+            margin-top: 0px;
+            font-size: 28px;
+        }
+
+        .card:hover{
+            transform: scale(1.2);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+        }
+
+        .js-tilt-glare{
+            border-radius: 18px;
+        }
+        </style>
+        
+    </head>
+    <body>
+        
+        
+        <div class="container">
+            <div class="heading">
+                <h2>FEATURES</h2>
+            </div>
+            <!-- data-tilt-scale="1.1" -->
+        <a href="http://localhost:5005/basic">
+        <div class="card rgb" data-tilt  data-tilt-glare data-tilt-max-glare="0.5" >
+            <div class="card-image1">
+            </div>
+                <div class="card-text">
+                    <span class="date" style="color: rgb(7, 255, 218);">Let's Edit</span>
+                    <h2>Edit Photo</h2>
+                    <p>This includes editing your photo, changing Brightness, Saturation, Inversion, Grayscale and much more..... </p>
+                    <h3 style="color: rgb(7, 255, 218); margin-top:15px;">Click Me!!</h3>
+                </div>
+        </div>
+        </a>
+        <a href="http://localhost:5005/status">
+        <div class="card rgb" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+            <div class="card-image2" >
+            </div>
+                <div class="card-text">
+                    <span class="date" style="color: rgb(255, 7, 110);">Let's Apply</span>
+                    <h2>Apply Filters</h2>
+                    <p>This includes adding various filters to your photo, like inverted filter, color sketch, summer photo and much more.....</p>
+                    <h3 style="color: rgb(255, 7, 110); margin-top:15px;">Click Me!!</h3>
+                </div>
+        </div>
+        </a>
+
+        <a href="http://localhost:5005/videos">
+        <div class="card rgb" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+            <div class="card-image3">
+            </div>
+                <div class="card-text">
+                    <span class="date" style="color:#4fdc4a;">Let's Capture</span>
+                    <h2>Capture Image</h2>
+                    <p>This includes having fun with video, changing background, drawing with marker, adding props in real time and much more.....</p>
+                    <h3 style="color: #4fdc4a; margin-top:15px;">Click Me!!</h3>
+                </div>
+        </div>
+        </a>
+    </div>
+        <div class="container1">
+            <div class="bubbles">
+                <span style="--i:11"></span>
+                <span style="--i:12"></span>
+                <span style="--i:24"></span>
+                <span style="--i:10"></span>
+                <span style="--i:14"></span>
+                <span style="--i:23"></span>
+                <span style="--i:18"></span>
+                <span style="--i:16"></span>
+                <span style="--i:19"></span>
+                <span style="--i:20"></span>
+                <span style="--i:22"></span>
+                <span style="--i:25"></span>
+                <span style="--i:18"></span>
+                <span style="--i:15"></span>
+                <span style="--i:13"></span>
+                <span style="--i:26"></span>
+                <span style="--i:17"></span>
+                <span style="--i:13"></span>
+                <span style="--i:28"></span>
+                <span style="--i:11"></span>
+                <span style="--i:12"></span>
+                <span style="--i:24"></span>
+                <span style="--i:10"></span>
+                <span style="--i:14"></span>
+                <span style="--i:23"></span>
+                <span style="--i:18"></span>
+                <span style="--i:16"></span>
+                <span style="--i:19"></span>
+                <span style="--i:20"></span>
+                <span style="--i:22"></span>
+                <span style="--i:25"></span>
+                <span style="--i:18"></span>
+                <span style="--i:15"></span>
+                <span style="--i:13"></span>
+                <span style="--i:26"></span>
+                <span style="--i:17"></span>
+                <span style="--i:13"></span>
+                <span style="--i:28"></span>
+
+            </div>
+        </div>
+        <script src="{{url_for('static', filename='vanilla-tilt.min.js')}}"></script>
+        <script>
+            VanillaTilt.init(document.querySelectorAll(".card"),{
+                glare: true,
+                reverse: true,
+                "max-glare": 0.5
+            });
+        </script>
+    </body>
+    </html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+#gender {
+position: absolute;
+margin-bottom: 200px;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* background: #E3F2FD; */
+  background: #1e1f22;
+}
+
+#image-div{
+  width: 200px;
+  height:350px;
+  margin: 30px 100px ;
+  border: 2px solid grey;
+  border-radius: 5px;
+
+}
+
+.container1{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+
+}
+
+.bubbles{
+  position: relative;
+  display: flex;
+}
+
+.bubbles span{
+  position: relative;
+  width: 12px;
+  height: 12px;
+  background: #7eafba;
+  margin: 5px 15px;
+  border-radius: 10%;
+  box-shadow: 0 0 0 5px #7eafba44,
+  0 0 20px #7eafba,
+  0 0 50px #7eafba;
+  animation: animate 15s linear infinite;
+  animation-duration: calc(125s / var(--i));
+}
+
+.bubbles span:nth-child(even)
+{
+  background: #ffffff;
+  box-shadow: 0 0 0 5px #ffffff44,
+  0 0 20px #ffffff,
+  0 0 50px #ffffff;
+}
+
+@keyframes animate{
+  0%{
+      transform: translateY(100vh) scale(0);
+  }
+  100%{
+      transform: translateY(-10vh) scale(1);
+  }
+}
+
+.container{
+  width: 1000px;
+  background: #1e1f22;
+  border-radius: 10px;
+  padding: 30px 35px 35px;
+  box-shadow: 0 10px 20px rgba(242, 242, 242, 0.1);
+  position: fixed;
+}
+
+.container .wrapper{
+  display: flex;
+  margin: 20px 0;
+  min-height: 335px;
+}
+
+.wrapper .preview-img{
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  margin-left: 30px;
+}
+
+.preview-img img{
+  max-width: 550px;
+  max-height: 500px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+</style>
+  </head>
+  <body >
+
+
+
+
+
+    <div class="container disable">
+      <div class="wrapper">
+          <div class="preview-img">
+              <img src="{{url_for('static', filename='processed_image.jpg')}}" alt="preview-img" id="image">
+          </div>
+      </div>
+
+  </div>
+
+  <div class="container1">
+    <div class="bubbles">
+        <span style="--i:11"></span>
+        <span style="--i:12"></span>
+        <span style="--i:24"></span>
+        <span style="--i:10"></span>
+        <span style="--i:14"></span>
+        <span style="--i:23"></span>
+        <span style="--i:18"></span>
+        <span style="--i:16"></span>
+        <span style="--i:19"></span>
+        <span style="--i:20"></span>
+        <span style="--i:22"></span>
+        <span style="--i:25"></span>
+        <span style="--i:18"></span>
+        <span style="--i:15"></span>
+        <span style="--i:13"></span>
+        <span style="--i:26"></span>
+        <span style="--i:17"></span>
+        <span style="--i:13"></span>
+        <span style="--i:28"></span>
+        <span style="--i:11"></span>
+        <span style="--i:12"></span>
+        <span style="--i:24"></span>
+        <span style="--i:10"></span>
+        <span style="--i:14"></span>
+        <span style="--i:23"></span>
+        <span style="--i:18"></span>
+        <span style="--i:16"></span>
+        <span style="--i:19"></span>
+        <span style="--i:20"></span>
+        <span style="--i:22"></span>
+        <span style="--i:25"></span>
+        <span style="--i:18"></span>
+        <span style="--i:15"></span>
+        <span style="--i:13"></span>
+        <span style="--i:26"></span>
+        <span style="--i:17"></span>
+        <span style="--i:13"></span>
+        <span style="--i:28"></span>
+
+    </div>
+</div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+  </body>
+</html>
